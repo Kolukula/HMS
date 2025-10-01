@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import { connectDB } from "./services/db.js";
-import { register, login } from "./controllers/auth.js";
+import { register, login, logout } from "./controllers/auth.js";
 import * as patients from "./controllers/patients.js";
 import * as users from "./controllers/admin.js";
 import * as records from "./controllers/doctors.js";
@@ -27,6 +27,7 @@ app.get("/", (req, res) => res.send("Hospital Management System API"));
 // Auth
 app.post("/api/auth/register", register);
 app.post("/api/auth/login", login);
+app.post("/api/auth/logout", authenticate, logout);
 
 // Admin routes
 app.post("/api/admin/users", authenticate, permit("ADMIN"), users.createUser);

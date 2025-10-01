@@ -74,3 +74,20 @@ export const login = async (req, res, next) => {
     next(err);
   }
 };
+
+
+// ✅ Logout
+export const logout = async (req, res, next) => {
+  try {
+    // Clear cookie if using httpOnly cookie for JWT
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict"
+    });
+
+    return res.json({ message: "Logged out successfully" });
+  } catch (err) {
+    next(err);
+  }
+};
