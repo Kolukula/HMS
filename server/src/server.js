@@ -22,6 +22,8 @@ app.use(express.json());
 
 await connectDB(); // ensure db connected before routes
 
+app.get("/", (req, res) => res.send("Hospital Management System API"));
+
 // Auth
 app.post("/api/auth/register", register);
 app.post("/api/auth/login", login);
